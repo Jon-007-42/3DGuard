@@ -111,3 +111,11 @@ Backup strøm ups hvis strømafbrydelse
 Reducere støv og partikler i 3d printers omgivelser  
 
  
+
+
+
+HUSK at dække:
+• Problem (emissioner, brandfare)
+• Løsning (3DGuard)
+• Nøgletal & fordel (“-90 % partikler”, “< 1 min. alarm”)
+• Fotos/renderinger
