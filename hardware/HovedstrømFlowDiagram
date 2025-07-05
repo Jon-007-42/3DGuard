@@ -1,0 +1,27 @@
+flowchart TB
+    %% 230 V indgang
+    A["230 V Forsyning"] --> B["Kombirelæ FI/LS C13 A"]
+    B --> C["Nødstop"] --> D["Kontaktor"]
+
+    %% 230 V-grene
+    D --> AUX["MCB AUX C10 A"] --> AUXS["Stikkontakt AUX"]
+    D --> P1["MCB P1 C10 A"]  --> KWH1["kWh-måler P1"] --> P1S["Stikkontakt P1"]
+    D --> P2["MCB P2 C10 A"]  --> KWH2["kWh-måler P2"] --> P2S["Stikkontakt P2"]
+
+    %% 24 V-gren
+    D --> PSU["24 V DIN-PSU"]    
+    PSU --> PLC["Controllino PLC"]
+
+    %% Lavspændingsforbrugere
+    PLC -- "PWM" --> FANS["Blæsere + HEPA-filter"]
+    PSU --> FANS
+    PSU --> SENS["Sensorbus"]
+
+    %% Sensorer
+    SENS --> CAB["Kabinet-sensorer\nTemp / PM / VOC"]
+    SENS --> TAV["Tavle-tempsensor"]
+
+    %% Fail-safe trip
+    PLC -- "Trip >= 45 °C" --> D
+
+
