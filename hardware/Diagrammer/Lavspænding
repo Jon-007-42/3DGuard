@@ -1,0 +1,38 @@
+flowchart TD
+    %% -------- top level --------
+    VAC["230 VAC"] --> Q3["Q3 MCB 6 A"]
+    Q3 --> PSU1["PSU1 24 V 30 W"]
+
+    %% -------- primary bus --------
+    PSU1 --> BUS24["+24 V BUS"]
+    PSU1 -.-> GND0["0 V (star)"]
+
+
+    %% -------- F3 branch --------
+    F3 --> CNT["Controllino VIN 24 V"]
+
+    %% -------- F4 branch (3 V3 rail) --------
+    F4 --> LDO["LDO 24 → 3 V3"]
+
+    subgraph rail33 ["3 V3 rail"]
+        direction LR
+        LDO --> SHT31A["SHT31-D A (0x44)"]
+        LDO --> SGP40A["SGP40 A (0x59)"]
+        LDO --> SHT31B["SHT31-D B (0x45)"]
+        LDO --> SGP40B["SGP40 B (0x59)"]
+    end
+    LDO -.-> GND0
+
+    %% -------- F5 branch (5 V rail) --------
+    F5 --> BUCK5["Buck 24 → 5 V"]
+
+    subgraph rail5 ["5 V rail"]
+        direction LR
+        BUCK5 --> LEDA["Status LED A"]
+        BUCK5 --> LEDB["Status LED B"]
+    end
+    BUCK5 -.-> GND0
+
+    %% -------- optional style for ground --------
+    classDef gnd stroke-dasharray:2 2
+    class GND0 gnd
