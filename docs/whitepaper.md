@@ -1,82 +1,127 @@
-1. Executive Summary
-3D-print er kommet ind i klasseværelser, værksteder og kontorer – men varme komponenter, emissioner og bevægelige dele udgør nye risici. 3DGuard er et komplet, lukket kabinet med indbyggede sensorer, filtrering og nødstop, der reducerer partikeludslip, minimerer brandfare og gør daglig drift tryg for både børn og professionelle.
+# 3DGuard Whitepaper
 
-2. Udfordringer ved åbne 3D-printere
-Risiko	Hvorfor det er et problem	Typiske konsekvenser
-Varme & brand	Hotend + byggeplade når 200-250 °C	Forbrændinger, brand ved fejl
-Emissioner	UFP-partikler & VOC’er (ABS > PLA)	Luftvejsirritation, astma-forværring
-Elektrisk sikkerhed	Billige strømforsyninger, manglende CE-beskyttelse	Kortslutning, stød
-Mekanisk bevægelse	Hurtige aksler & remme	Klem- og snitsår
-Kemikalier & materialer	Resin/filament med allergener	Hud-/hormoneffekter
-Støj & støv	Åben drift i fællesrum	Koncentrations- & vedligeholdelsesproblemer
+*Safer, Cleaner & Smarter 3D‑Printing*
 
-3. 3DGuard-løsningen
-3.1 Kernen i systemet
-Lukket, brandsikkert kabinet – isolerer varme flader og bevægelige dele.
+![3DGuard Banner](assets/3dguard_banner.png)
 
-HEPA + aktivt-kul-filtrering – fjerner > 99 % UFP & VOC (ABS-test).
+<p align="center">
+  <img src="https://img.shields.io/badge/Version-1.0-blue" alt="version badge" />
+  <img src="https://img.shields.io/badge/Last%20Updated-July%206%2C%202025-brightgreen" alt="updated badge" />
+</p>
 
-Temperatur- og røgdetektion – < 1 min. alarm og automatisk shutdown.
+---
 
-CE-godkendt strøm & nødstop-knap – sikker drift, øjeblikkelig afbrydelse.
+## Table of Contents
 
-Dørsensorer & interlock – printer pauser, hvis skabet åbnes.
+1. [Executive Summary](#1-executive-summary)
+2. [Challenges of Open 3D‑Printers](#2-challenges-of-open-3d-printers)
+3. [The 3DGuard Solution](#3-the-3dguard-solution)
+      3.1 [Core Features](#31-core-features)  |  3.2 [Advanced Sensors](#32-advanced-sensors)
+4. [Key Metrics & Benefits](#4-key-metrics--benefits)
+5. [Implementation Workflow](#5-implementation-workflow)
+6. [Educational Resources](#6-educational-resources)
+7. [Conclusion](#7-conclusion)
+8. [Next Steps](#8-next-steps)
+9. [Appendix / Visual Assets](#9-appendix--visual-assets)
 
-Cloud-overvågning – live-feed, logning, fjernstyring via OctoPrint.
+---
 
-3.2 Avancerede sensorer (valgfrie moduler)
-Sensor	Overvåget parameter	Sikkerhedseffekt	Integration
-Termisk probe	Hotend/bed-temp.	Slukker ved > X °C	Indbygget cutoff
-TVOC/PM-sensor	VOC & UFP	Øger ventilation / giver alarm	Dashboard-graf
-Bevægelses-led (PIR)	Aktivitet nær printer	Advarsel ved uautoriseret brug	SMS/e-mail
-UPS-modul	Netstrøm	Sikrer printafslutning ved udfald	15 min. buffer
+## 1. Executive Summary
 
-4. Dokumenterede nøgletal & fordele
-“Safety-first uden at gå på kompromis med printkvaliteten.”
+3D‑printing is transforming classrooms, fablabs and offices—but **heat, fumes and moving parts** introduce new safety risks. **3DGuard** is a plug‑and‑play enclosure that combines fire‑safe construction, industrial‑grade filtration and smart sensorics, cutting particle emissions by **90 %** and delivering complete peace of mind for educators and professionals.
 
-KPI	Resultat*	Benefit
-Partikel­reduktion	-90 % UFP ved ABS	Sundere indeklima
-Alarm-respons	< 60 sek til sluk	Minimeret brandrisiko
-Lydniveau	-10 dB vs. åben printer	Mere støjsvag drift
-Opsætningstid	< 15 min plug-and-play	Let implementering
+---
 
-*Testdata fra intern laboratoriemåling; kontakt os for fuld rapport.
+## 2. Challenges of Open 3D‑Printers
 
-5. Implementering & drift
-Placér 3DGuard under bordplade / i maker-zone.
+| ⚠️ *Risk*             | Why it matters                                          | Potential consequences                  |
+| --------------------- | ------------------------------------------------------- | --------------------------------------- |
+| **Heat & Fire**       | Hotend & bed reach 200–250 °C                           | Burns, fires when unattended            |
+| **Air Emissions**     | Ultrafine particles (UFP) & VOCs—especially with ABS    | Respiratory irritation, worsened asthma |
+| **Electrical Safety** | Low‑cost PSUs, missing over‑temp protection             | Short‑circuit, electric shock           |
+| **Mechanical Motion** | High‑speed axes & belts                                 | Pinches, lacerations                    |
+| **Chemicals**         | Certain resins/filaments are allergenic or carcinogenic | Skin/hormonal effects                   |
+| **Noise & Dust**      | Open operation in shared spaces                         | Distraction, extra maintenance          |
 
-Tilslut strøm + netværk; følg den intuitive opsætningsguide.
+---
 
-Kalibrér sensorer (auto-wizard, < 3 min).
+## 3. The 3DGuard Solution
 
-Overvåg live-dashboard eller modtag push-alarmer på mobil.
+### 3.1 Core Features <a id="31-core-features"></a>
 
-Vedligehold: skift filter hver ~500 print-timer; tjek UPS-batteri årligt.
+* **Closed, fire‑rated cabinet** – isolates heat & moving parts.
+* **HEPA + activated carbon filter** – removes > 99 % UFP & VOC (ABS test).
+* **Thermal & smoke sensing** – < *60 s* auto‑shut‑down if anomalies detected.
+* **CE‑certified PSU & E‑stop** – instant power cut‑off.
+* **Door interlock** – pauses print if door opens.
+* **Cloud dashboard** – live feed, logs & remote control (OctoPrint API).
 
-6. Pædagogiske materialer
-Klassestyrings-plakat: “5 regler før du printer”.
+### 3.2 Advanced Sensors <a id="32-advanced-sensors"></a>
 
-Quick-start-kort på lågen.
+| Sensor            | Parameter              | Safety Effect                | Integration       |
+| ----------------- | ---------------------- | ---------------------------- | ----------------- |
+| **Thermal probe** | Hotend/bed temperature | Auto shut‑off on > setpoint  | Hardware cutoff   |
+| **TVOC / PM**     | VOC & UFP levels       | Boosts ventilation / alerts  | Web dashboard     |
+| **PIR motion**    | Activity near printer  | Warns on tampering           | SMS / e‑mail push |
+| **UPS module**    | Mains power            | Completes print after outage | \~15 min buffer   |
 
-E-læringsmodul (SCORM) med quiz om sikker 3D-print.
+---
 
-7. Konklusion
-Med 3DGuard kan skoler, Fablabs og virksomheder få fuldt udbytte af 3D-print uden at gå på kompromis med sikkerhed, sundhed og driftstid. Løsningen kombinerer kabinetsikring, filtrering og smart-sensorik i én plug-and-play-enhed.
+## 4. Key Metrics & Benefits
 
-8. Næste skridt
-Book en online demo – se 3DGuard i aktion.
+| KPI                    | Result<sup>†</sup>     | Benefit              |
+| ---------------------- | ---------------------- | -------------------- |
+| **Particle reduction** | **‑90 %** UFP (ABS)    | Healthier indoor air |
+| **Alarm response**     | **< 60 s** to shutdown | Minimized fire risk  |
+| **Noise level**        | **‑10 dB** vs. open    | Quieter workspace    |
+| **Setup time**         | **< 15 min** PnP       | Rapid deployment     |
 
-Få et test-kit i 30 dage risk-free.
+<sup>† Internal lab measurements—request full report for methodology.</sup>
 
-Download fuld whitepaper inkl. detaljerede måledata, certifikater og ROI-beregner.
+---
 
-Bilag / visuelle elementer
-Indsæt renderinger & fotos
+## 5. Implementation Workflow
 
-Figur 1: 3DGuard-enclosure (isometrisk)
+1. **Place** 3DGuard under bench or in maker zone.
+2. **Connect** power & network; follow guided setup.
+3. **Calibrate** sensors via auto‑wizard (≈3 min).
+4. **Monitor** live dashboard or receive push alerts.
+5. **Maintain**: replace filter every ≈500 print‑hours; check UPS battery annually.
 
-Figur 2: Partikelmåling før/efter (graf)
+---
 
-Figur 3: Dashboard-skærm med live-data
+## 6. Educational Resources
 
-© 2025 3D Buddy ApS – Alle rettigheder forbeholdes
+* **Classroom poster** – *“5 Rules before You Print”*.
+* **Quick‑start card** on door.
+* **SCORM e‑learning module** with safety quiz.
+
+---
+
+## 7. Conclusion
+
+**3DGuard** unlocks the full potential of 3D‑printing while safeguarding people, property and uptime. One enclosure—total control.
+
+---
+
+## 8. Next Steps
+
+* **📅 Book a live demo** – experience 3DGuard in action.
+* **🎁 Request a 30‑day trial kit** – zero‑risk evaluation.
+* **⬇️ Download the full whitepaper** – includes test data, certificates & ROI calculator.
+
+---
+
+## 9. Appendix / Visual Assets
+
+Add high‑resolution images to `assets/` and reference them below:
+
+| Figure | File                          | Caption                                   |
+| ------ | ----------------------------- | ----------------------------------------- |
+| 1      | `assets/3dguard_iso.png`      | Isometric view of 3DGuard enclosure       |
+| 2      | `assets/particle_graph.svg`   | UFP concentration before/after filtration |
+| 3      | `assets/dashboard_mockup.png` | Live dashboard screenshot                 |
+
+---
+
+<p align="center"><sub>© 2025 3D Buddy ApS – All rights reserved.</sub></p>
