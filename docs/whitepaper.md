@@ -1,121 +1,82 @@
-Whitepaper 
+1. Executive Summary
+3D-print er kommet ind i klasseværelser, værksteder og kontorer – men varme komponenter, emissioner og bevægelige dele udgør nye risici. 3DGuard er et komplet, lukket kabinet med indbyggede sensorer, filtrering og nødstop, der reducerer partikeludslip, minimerer brandfare og gør daglig drift tryg for både børn og professionelle.
 
-Varme og brandfare  
+2. Udfordringer ved åbne 3D-printere
+Risiko	Hvorfor det er et problem	Typiske konsekvenser
+Varme & brand	Hotend + byggeplade når 200-250 °C	Forbrændinger, brand ved fejl
+Emissioner	UFP-partikler & VOC’er (ABS > PLA)	Luftvejsirritation, astma-forværring
+Elektrisk sikkerhed	Billige strømforsyninger, manglende CE-beskyttelse	Kortslutning, stød
+Mekanisk bevægelse	Hurtige aksler & remme	Klem- og snitsår
+Kemikalier & materialer	Resin/filament med allergener	Hud-/hormoneffekter
+Støj & støv	Åben drift i fællesrum	Koncentrations- & vedligeholdelsesproblemer
 
-3D-printere bruger varmetråde (hotends) og varme byggeplader, der kan blive 200–250°C varme.  
+3. 3DGuard-løsningen
+3.1 Kernen i systemet
+Lukket, brandsikkert kabinet – isolerer varme flader og bevægelige dele.
 
-Risiko for forbrændinger ved berøring.  
+HEPA + aktivt-kul-filtrering – fjerner > 99 % UFP & VOC (ABS-test).
 
-Risiko for brand, især hvis printeren er dårligt bygget, fejlmonteret eller efterlades uden opsyn.  
+Temperatur- og røgdetektion – < 1 min. alarm og automatisk shutdown.
 
-Fordele ved 3DGuard  
+CE-godkendt strøm & nødstop-knap – sikker drift, øjeblikkelig afbrydelse.
 
-Sikkert kabinet  (lukket printer).  
+Dørsensorer & interlock – printer pauser, hvis skabet åbnes.
 
-Printeren er monteret på brandsikkert underlag.  
+Cloud-overvågning – live-feed, logning, fjernstyring via OctoPrint.
 
-Nemt at holde opsyn i fx skoler.  
+3.2 Avancerede sensorer (valgfrie moduler)
+Sensor	Overvåget parameter	Sikkerhedseffekt	Integration
+Termisk probe	Hotend/bed-temp.	Slukker ved > X °C	Indbygget cutoff
+TVOC/PM-sensor	VOC & UFP	Øger ventilation / giver alarm	Dashboard-graf
+Bevægelses-led (PIR)	Aktivitet nær printer	Advarsel ved uautoriseret brug	SMS/e-mail
+UPS-modul	Netstrøm	Sikrer printafslutning ved udfald	15 min. buffer
 
-Installer evt. røgalarmer eller temperatursensorer.  
+4. Dokumenterede nøgletal & fordele
+“Safety-first uden at gå på kompromis med printkvaliteten.”
 
-Temperaturfølere / termiske sensorer 
- Funktion: Overvåger temperaturen i kabinettet eller på hotend/bed. 
- Sikkerhedseffekt: Kan slå fra ved overophedning eller udløse alarm. 
- Brug: Beskytter mod brandfare og svigtende køling. 
+KPI	Resultat*	Benefit
+Partikel­reduktion	-90 % UFP ved ABS	Sundere indeklima
+Alarm-respons	< 60 sek til sluk	Minimeret brandrisiko
+Lydniveau	-10 dB vs. åben printer	Mere støjsvag drift
+Opsætningstid	< 15 min plug-and-play	Let implementering
 
-  
+*Testdata fra intern laboratoriemåling; kontakt os for fuld rapport.
 
-Udslip af partikler og dampe (emissioner)  
+5. Implementering & drift
+Placér 3DGuard under bordplade / i maker-zone.
 
-Især ved print med ABS, men også PLA, frigives ultrafine partikler (UFPs) og VOC'er (flygtige organiske forbindelser). Det er potentielt skadeligt for luftvejene, især hos børn og personer med astma.  
+Tilslut strøm + netværk; følg den intuitive opsætningsguide.
 
- Fordele ved 3DGuard 
+Kalibrér sensorer (auto-wizard, < 3 min).
 
-Lukket printere med indbygget filtrering.  
+Overvåg live-dashboard eller modtag push-alarmer på mobil.
 
-God ventilation med filtre (HEPA + aktivt kul). 
+Vedligehold: skift filter hver ~500 print-timer; tjek UPS-batteri årligt.
 
-Luftkvalitetssensorer (f.eks. TVOC- eller PM-sensorer) 
- Funktion: Måler partikler eller dampe (UFP, VOC) i kabinettet. 
- Sikkerhedseffekt: Advarer, hvis luftkvaliteten bliver dårlig, især ved brug af ABS eller resin. 
- Brug: Kan kobles til ventilationsstyring eller advarselslys. 
+6. Pædagogiske materialer
+Klassestyrings-plakat: “5 regler før du printer”.
 
-Printeren separeres delvis fra rummet og ligger under bordpladen  
+Quick-start-kort på lågen.
 
- Elektrisk sikkerhed  
+E-læringsmodul (SCORM) med quiz om sikker 3D-print.
 
- 3D-printere kan have mangle sikkerhedsfeatures som overophedningsbeskyttelse og risiko for kortslutning eller elektrisk stød.  
+7. Konklusion
+Med 3DGuard kan skoler, Fablabs og virksomheder få fuldt udbytte af 3D-print uden at gå på kompromis med sikkerhed, sundhed og driftstid. Løsningen kombinerer kabinetsikring, filtrering og smart-sensorik i én plug-and-play-enhed.
 
- - CE-mærket printerskab med godkendt strømforsyning.  
+8. Næste skridt
+Book en online demo – se 3DGuard i aktion.
 
-Gode elekriske forbindelser og kabler 
+Få et test-kit i 30 dage risk-free.
 
-  
+Download fuld whitepaper inkl. detaljerede måledata, certifikater og ROI-beregner.
 
- Mekanisk bevægelse  
+Bilag / visuelle elementer
+Indsæt renderinger & fotos
 
-Risiko for skader ved berøring af bevægelige dele under drift. Printerens dele bevæger sig hurtigt og kan klemme fingre.  
+Figur 1: 3DGuard-enclosure (isometrisk)
 
-3DSafeGuard indkapsler printeren så det er lukket af under brug  
+Figur 2: Partikelmåling før/efter (graf)
 
-Intuitiv anvendelse så brugerne ikke stikke hænder ind under print. 
+Figur 3: Dashboard-skærm med live-data
 
-Sikkerhedssensorer eller låsemekanismer.  
-
-Dørsensor: (f.eks. reed switches eller mikrokontakter) 
- Funktion: Registrerer om døren til printeren er åben eller lukket. 
- Sikkerhedseffekt: Kan pause printeren automatisk, hvis skabet åbnes under print. 
-
-Nødstop-knap 
- Funktion: Manuel sikkerhedsknap, som afbryder strømmen øjeblikkeligt. 
- Sikkerhedseffekt: Brugeren eller en voksen kan hurtigt stoppe printeren i en nødsituation. 
- Brug: Bør være let tilgængelig uden på skabet. 
-
-Lys- eller bevægelsessensorer (passiv overvågning) 
- Funktion: Overvåger aktivitet nær printeren. 
- Sikkerhedseffekt: Kan advare, hvis nogen forsøger at åbne eller røre ved printeren under drift. 
- Brug: Supplerende overvågning i åbne miljøer. 
-
-Materialer og kemikalier  
-
-Nogle filamenter og harpikser (resin) indeholder kemikalier, der kan være allergifremkaldende, kræftfremkaldende eller hormonforstyrrende.  
-
-Filament holdes tørt 
-
-Plads til opbevaring af gummihandsker   
-
- Pædagogisk og ansvarsmæssigt  
-
-Tydelig guide og brugerregler 
-
-Skilte og instruktioner ved printeren 
-
- 
-
-Støjdæmpning 
-
-... 
-
- 
-
-Redskaber ved hånden  
-
-Overvågning af filament så det ikke løber tørt (temp, fugtighed…) 
-
-Live feed og lognin til cloud fra printer (octi) og 3DGuard enclosure  
-
-Opbevaring og konstant omgivende Temp, fugtighed og luft partikler  
-
-Backup strøm ups hvis strømafbrydelse  
-
-Reducere støv og partikler i 3d printers omgivelser  
-
- 
-
-
-
-HUSK at dække:
-• Problem (emissioner, brandfare)
-• Løsning (3DGuard)
-• Nøgletal & fordel (“-90 % partikler”, “< 1 min. alarm”)
-• Fotos/renderinger
+© 2025 3D Buddy ApS – Alle rettigheder forbeholdes
