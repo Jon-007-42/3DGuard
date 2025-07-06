@@ -1,3 +1,62 @@
+flowchart TD
+%% ---------- 1 · TAVLE ----------
+subgraph TAVLE["TAVLE – hovedkomponenter"]
+    direction TB
+    PSU[PSU1<br>24 V / 2 A]
+    LDO[LDO 24→3 V3]
+    BUCK[BUCK 24→5 V]
+    PLC[Controllino<br><br>SDA/SCL<br>DI2&nbsp;DI3&nbsp;DI4&nbsp;DI5<br>AIN0&nbsp;AIN1<br>DO&nbsp;Q0.4&nbsp;Q0.5<br>PWM&nbsp;Q0.0-0.3]
+    MUX[PCA9543A<br>I²C-Mux]
+    MOSFET[MOSFET-driver<br>4 × Fan]
+end
+
+%% ---------- 2 · KLEMMER ----------
+subgraph KLEMMER["KLEMMER"]
+    direction TB
+    X1["+24 V bus<br>-X1"]
+    X2["0 V bus<br>-X2"]
+
+    X3["-X3 Sensor A<br>(24 0 SDA SCL INT)"]
+    X4["-X4 Sensor B<br>(24 0 SDA SCL INT)"]
+
+    X5["-X5 Smoke A (D0)"]
+    X6["-X6 Smoke B (D0)"]
+    X7["-X7 Smoke A (A0)"]
+    X8["-X8 Smoke B (A0)"]
+
+    X9["-X9 Door A"]
+    X10["-X10 Door B"]
+
+    X11["-X11 LED A<br>(5 DIN 0)"]
+    X12["-X12 LED B<br>(5 DIN 0)"]
+
+    XF1["-XFAN1&nbsp;A1"]
+    XF2["-XFAN2&nbsp;A2"]
+    XF3["-XFAN3&nbsp;B1"]
+    XF4["-XFAN4&nbsp;B2"]
+end
+
+%% ---------- 3 · FELT ----------
+subgraph FELT_A["FELT – Compartment A"]
+    direction TB
+    SENS_A["Sensor-PCB A<br>SHT31-D + SGP40"]
+    SMOKE_A["Smoke-sensor A"]
+    DOOR_A["Reed A (NC)"]
+    LED_A["Status LED A"]
+    FAN1A["Fan A1"]
+    FAN2A["Fan A2"]
+end
+
+subgraph FELT_B["FELT – Compartment B"]
+    direction TB
+    SENS_B["Sensor-PCB B<br>SHT31-D + SGP40"]
+    SMOKE_B["Smoke-sensor B"]
+    DOOR_B["Reed B (NC)"]
+    LED_B["Status LED B"]
+    FAN1B["Fan B1"]
+    FAN2B["Fan B2"]
+end
+
 %% ---- Forsyning ----
 PSU -- "+24 V" --> X1
 PSU -. "0 V" .-> X2
