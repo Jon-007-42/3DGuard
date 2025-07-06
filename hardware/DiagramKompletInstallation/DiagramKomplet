@@ -1,35 +1,68 @@
-flowchart TD
-    %% ------- ZONE 1 : TAVLE ------------------------------------------------
-    subgraph TAVLE["TAVLE-komponenter"]
-        direction TB
-        PSU1["+24 V PSU<br>(=G1)"]
+%% ---- Forsyning ----
+PSU -- "+24 V" --> X1
+PSU -. "0 V" .-> X2
+X1 --> X3
+X1 --> X4
+X1 --> X5
+X1 --> X6
+X1 --> X9
+X1 --> X10
+X1 --> BUCK
+X1 --> MOSFET
+X2 --> X3
+X2 --> X4
+X2 --> X7
+X2 --> X8
+X2 --> X11
+X2 --> X12
+X2 --> MOSFET
 
-        PLC["Controllino<br>MAXI • relevante pins<br>—<br>DO Q0.4 (LED DIN)<br>DI2 (Smoke D0)<br>DI3 (Door NC)<br>AIN0 (Smoke A0)<br>SDA / SCL"]
+%% ---- 3 V3 rail ----
+PSU --> LDO
+LDO -- "3 V3" --> MUX
 
-        MUX["PCA9543A<br>I²C Mux"]
+%% ---- I²C ----
+PLC -- SDA/SCL --> MUX
+MUX --> X3
+MUX --> X4
+X3 --> SENS_A
+X4 --> SENS_B
 
-        BUCK["Buck-regulator<br>24 → 5 V"]
-    end
+%% ---- Sensor-alarmer ----
+SENS_A -- INT --> X3
+X3 -- INT --> PLC
+SENS_B -- INT --> X4
+X4 -- INT --> PLC
 
-    %% ------- ZONE 2 : KLEMMER ---------------------------------------------
-    subgraph KLEMMER["Rækkeklemmer – Comp A"]
-        direction TB
-        X1["+24 V bus<br>-X1:1"]
-        X2["0 V bus<br>-X2:1"]
-        X3["+24  0V  SDA  SCL  INT<br>-X3:1-5"]
-        X5["+24 V / D0<br>-X5:1-2"]
-        X7["A0 / 0 V<br>-X7:1-2"]
-        X9["+24 V / NC<br>-X9:1-2"]
-        X11["+5 V  DIN  0 V<br>-X11:1-3"]
-    end
+SMOKE_A -- D0 --> X5
+X5 -- D0 --> PLC
+SMOKE_B -- D0 --> X6
+X6 -- D0 --> PLC
 
-    %% ------- ZONE 3 : FELT -------------------------------------------------
-    subgraph FELT["Felt – Compartment A"]
-        direction TB
-        SENS_A["Sensor-print A<br>• SHT31-D (0x44)<br>• SGP40 (0x59)"]
-        SMOKE_A["Røgsensor A<br>(optisk modul)"]
-        DOOR_A["Reed-kontakt A<br>(låge NC)"]
-        LED_A["NeoPixel LED A"]
-    end
+SMOKE_A -- A0 --> X7
+X7 -- A0 --> PLC
+SMOKE_B -- A0 --> X8
+X8 -- A0 --> PLC
 
-   
+DOOR_A --> X9
+X9 -- NC --> PLC
+DOOR_B --> X10
+X10 -- NC --> PLC
+
+%% ---- LED ----
+BUCK -- "+5 V" --> X11
+BUCK -- "+5 V" --> X12
+PLC -- DIN_A --> X11
+PLC -- DIN_B --> X12
+X11 --> LED_A
+X12 --> LED_B
+
+%% ---- Fans ----
+MOSFET -- PWM1 --> XF1
+MOSFET -- PWM2 --> XF2
+MOSFET -- PWM3 --> XF3
+MOSFET -- PWM4 --> XF4
+XF1 --> FAN1A
+XF2 --> FAN2A
+XF3 --> FAN1B
+XF4 --> FAN2B
