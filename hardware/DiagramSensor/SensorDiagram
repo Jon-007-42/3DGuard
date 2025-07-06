@@ -1,0 +1,48 @@
+flowchart TD
+    %% -------- I²C backbone --------
+    PLC_I2C["Controllino<br>(SDA / SCL)"] --> MUX["PCA9543<br>(I²C Mux)"]
+
+    %% -------- Compartment A --------
+    subgraph CAB_A["Compartment A"]
+        direction TB
+        SHT31A["SHT31-D<br>0x44"]
+        SGP40A["SGP40<br>0x59"]
+        SmokeA_D0["Smoke A<br>D0 digital"]
+        SmokeA_A0["Smoke A<br>A0 analog"]
+        ReedA["Reed A<br>Door NC"]
+        LEDA["Status LED A"]
+    end
+
+    %% -------- Compartment B --------
+    subgraph CAB_B["Compartment B"]
+        direction TB
+        SHT31B["SHT31-D<br>0x45"]
+        SGP40B["SGP40<br>0x59"]
+        SmokeB_D0["Smoke B<br>D0 digital"]
+        SmokeB_A0["Smoke B<br>A0 analog"]
+        ReedB["Reed B<br>Door NC"]
+        LEDB["Status LED B"]
+    end
+
+    %% -------- I²C branches --------
+    MUX --> SHT31A
+    MUX --> SGP40A
+    MUX --> SHT31B
+    MUX --> SGP40B
+
+    %% -------- LED control lines --------
+    PLC_LED_A["DO Q0.4"] --> LEDA
+    PLC_LED_B["DO Q0.5"] --> LEDB
+
+    %% -------- Digital alarm & door inputs --------
+    SmokeA_D0 --> PLC_DI2["DI2"]
+    SmokeB_D0 --> PLC_DI4["DI4"]
+    ReedA --> PLC_DI3["DI3"]
+    ReedB --> PLC_DI5["DI5"]
+
+    %% -------- Analog smoke curves --------
+    SmokeA_A0 --> PLC_AIN0["AIN0"]
+    SmokeB_A0 --> PLC_AIN1["AIN1"]
+
+    %% -------- Pull-up reminder --------
+    Pullups["10 kΩ pull-ups<br>on sensor PCBs"] -.-> MUX
