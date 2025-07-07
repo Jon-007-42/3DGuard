@@ -22,7 +22,7 @@ All prices are July 2025 retail / 1-off **incl. Danish VAT** (shipping excluded)
 
 | Qty | Item | Unit price | Sub-total |
 |----:|------|-----------:|----------:|
-| 2 | [Phoenix Contact EO-CF/PT servicestik (Push-in)](https://watto.dk) | 51,5 kr | 103 kr | (SKAL VÆRE UNDER KABINET A+B)
+| 2 | [Phoenix Contact EO-CF/PT servicestik (Push-in)](https://watto.dk) (SKAL VÆRE UNDER KABINET A+B)| 51,5 kr | 103 kr | 
 | 1 | Schuko stikdåse 8 udtag med jord | 93 kr | 93 kr |
 | 1 | [Schneider nødstop Ø40 mm XB5AS8445](https://watto.dk) | 289 kr | 289 kr |
 
