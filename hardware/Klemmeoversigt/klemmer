@@ -1,0 +1,83 @@
+# Elektrisk Terminal Oversigt: Lavspændings Styrekredse
+
+Dette dokument giver et overblik over alle lavspændingsterminaler (klemmer) i 3DBuddy-tavlen, organiseret efter deres placering på DIN-skinnen. Oplysninger inkluderer tilsluttede komponenter, ledningsfarver og funktioner.
+
+**Farvekoder:**
+* **+24V DC:** Rød
+* **0V DC (GND for 24V):** Mørkeblå
+* **+5V DC:** Orange
+* **0V DC (GND for 5V/Signals):** Hvid
+* **I²C SDA:** Grøn
+* **I²C SCL:** Gul
+* **Digitale/Analoge Signaler:** Sort / Grå / Andre (specificeres)
+
+---
+
+## Klemrække X1: 24V DC Hovedforsyning & Distribution
+
+Denne klemrække er din primære fordeling for 24V DC strøm i tavlen.
+
+| Klemme | Tilslutning (Ind)       | Ledningsfarve (Ind) | Tilslutning (Ud)                    | Ledningsfarve (Ud) | Funktion/Bemærkning                                                |
+| :----- | :---------------------- | :------------------ | :---------------------------------- | :----------------- | :----------------------------------------------------------------- |
+| X1:1   | PSU (+24V DC)           | Rød                 | Controllino PLC (VIN+)              | Rød                | Hovedforsyning +24V DC til PLC og andre 24V busser.                |
+| X1:2   | (Lusing fra X1:1)       | Rød                 | Kontaktor Styring (+24V start)      | Rød                | Forsyning til styrekredsen for kontaktor.                          |
+| X1:3   | (Lusing fra X1:1)       | Rød                 | Til Klemrække X3 (+24V)             | Rød                | Bus til sensor-klemrækker (X3, X4)                                 |
+| X1:4   | (Lusing fra X1:1)       | Rød                 | Til Klemrække X5 (+24V)             | Rød                | Bus til røgsensor-klemrækker (X5, X6)                              |
+| X1:5   | (Lusing fra X1:1)       | Rød                 | Til Klemrække X7 (+24V)             | Rød                | Bus til røgsensor-klemrækker (X7, X8)                              |
+| X1:6   | (Lusing fra X1:1)       | Rød                 | Til Klemrække X9 (+24V)             | Rød                | Bus til dørsensor-klemrækker (X9, X10)                             |
+| X1:7   | (Lusing fra X1:1)       | Rød                 | Til Klemrække X11 (+5V via Buck)    | Orange             | Bus til LED-klemrækker (X11, X12) - Husk 5V Buck herfra!           |
+| X1:8   | (Lusing fra X1:1)       | Rød                 | Til Klemrække XFAN1 (+24V)          | Rød                | Bus til blæser-klemrækker (XFAN1-XFAN4)                            |
+
+---
+
+## Klemrække X2: 0V DC (GND) Hovedbus
+
+Denne klemrække er din primære reference (jord/nul) for alle 24V DC og 5V DC kredsløb.
+
+| Klemme | Tilslutning (Ind)     | Ledningsfarve (Ind) | Tilslutning (Ud)               | Ledningsfarve (Ud) | Funktion/Bemærkning                                                |
+| :----- | :-------------------- | :------------------ | :----------------------------- | :----------------- | :----------------------------------------------------------------- |
+| X2:1   | PSU (0V DC / GND)     | Mørkeblå            | Controllino PLC (GND)          | Mørkeblå           | Hoved 0V DC til PLC og andre 0V busser.                            |
+| X2:2   | (Lusing fra X2:1)     | Mørkeblå            | Kontaktor Spole (A2)           | Mørkeblå           | 0V DC retur fra kontaktorspolen.                                   |
+| X2:3   | (Lusing fra X2:1)     | Mørkeblå            | Til Klemrække X3 (0V)          | Mørkeblå           | Bus til sensor-klemrækker (X3, X4)                                 |
+| X2:4   | (Lusing fra X2:1)     | Mørkeblå            | Til Klemrække X5 (0V)          | Mørkeblå           | Bus til røgsensor-klemrækker (X5, X6)                              |
+| X2:5   | (Lusing fra X2:1)     | Mørkeblå            | Til Klemrække X7 (0V)          | Mørkeblå           | Bus til røgsensor-klemrækker (X7, X8)                              |
+| X2:6   | (Lusing fra X2:1)     | Mørkeblå            | Til Klemrække X9 (0V)          | Mørkeblå           | Bus til dørsensor-klemrækker (X9, X10)                             |
+| X2:7   | (Lusing fra X2:1)     | Mørkeblå            | Til Klemrække X11 (0V for LED) | Hvid               | Bus til LED-klemrækker (X11, X12) - 0V for 5V kreds.               |
+| X2:8   | (Lusing fra X2:1)     | Mørkeblå            | Til Klemrække XFAN1 (0V)       | Mørkeblå           | Bus til blæser-klemrækker (XFAN1-XFAN4)                            |
+
+---
+
+## Klemrække XKONT: Kontaktor Styring
+
+Dedikeret klemrække for styringen af hovedkontaktoren.
+
+| Klemme    | Tilslutning (Ind)                | Ledningsfarve (Ind) | Tilslutning (Ud)                       | Ledningsfarve (Ud) | Funktion/Bemærkning                                            |
+| :-------- | :------------------------------- | :------------------ | :------------------------------------- | :----------------- | :------------------------------------------------------------- |
+| XKONT:1   | Fra X1:2 (+24V DC)               | Rød                 | Til Controllino PLC (Relæudgang Input) | Rød                | +24V DC ind til Controllino's relæudgang (gennem kontakt).     |
+| XKONT:2   | Fra Controllino PLC (Relæudgang) | Rød                 | Til Nødstopknap (NC-kontakt)           | Rød                | Udgang fra Controllino's relæ til nødstop (i serie).           |
+| XKONT:3   | Fra Nødstopknap (NC-kontakt)     | Rød                 | Til Kontaktor Spole (A1)               | Rød                | Udgang fra nødstop til kontaktorspolen.                        |
+
+---
+
+## Klemrække XNSTOP: Nødstop Status Feedback
+
+Dedikeret klemrække for signalering af nødstopstatus til PLC'en.
+
+| Klemme    | Tilslutning (Ind)                | Ledningsfarve (Ind) | Tilslutning (Ud)                   | Ledningsfarve (Ud) | Funktion/Bemærkning                                                |
+| :-------- | :------------------------------- | :------------------ | :--------------------------------- | :----------------- | :----------------------------------------------------------------- |
+| XNSTOP:1  | Fra Nødstopknap (Status-kontakt) | Mørkeblå            | Til Controllino PLC (Digital Input) | Mørkeblå           | Nødstop status til PLC (evt. med 24V pull-up hvis PLC-input kræver). |
+
+---
+
+**(Fortsæt med X3, X4, X5, X6, X7, X8, X9, X10, X11, X12, XFAN1, XFAN2, XFAN3, XFAN4 på samme måde)**
+
+---
+
+### Hvordan du bruger dette:
+
+* **Google Sheets:** Du kan kopiere teksten for hver tabel og indsætte den i Google Sheets. Sheets er intelligent nok til at genkende tabeller og formatere det korrekt i rækker og kolonner. Dette er den nemmeste og mest effektive måde at have det i dit Google Drive.
+* **GitHub:** Kopier Markdown-teksten direkte ind i en `.md` fil i dit GitHub-repository. GitHub vil automatisk rendere den som en flot, formateret tabel.
+
+Dette format er både læsbart i sin rå tekstform og kan nemt konverteres til de visuelle tabelformater, du ønsker at bruge i dine dokumentationssystemer. Det giver dig den detaljerede kontrol, du har brug for til din bygning og CE-mærkning.
+
+Vil du have mig til at fortsætte med de næste klemrækker i Markdown-format, eller har du nu nok til selv at fortsætte?
