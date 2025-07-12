@@ -1,0 +1,47 @@
+graph TD
+    subgraph 230V AC Hovedforsyning
+        INPUT[230V AC Indgang\nL, N, PE] --- A[RCBO\n1P+N C13A 30mA]
+    end
+
+    subgraph Fordeling i Tavle
+        A --- B1(Kontaktor\n230V Hovedkreds)
+        A --- B2(24V DC DIN-PSU)
+
+        B1 --- C1(MCB 1P+N C10A\nPrinter 1)
+        B1 --- C2(MCB 1P+N C10A\nPrinter 2)
+        B1 --- C3(MCB 1P+N C10A\nAUX Stik)
+
+        C1 --- D1(kWh-måler P1)
+        C2 --- D2(kWh-måler P2)
+
+        D1 --- E1(Stikkontakt P1)
+        D2 --- E2(Stikkontakt P2)
+        C3 --- E3(Stikkontakt AUX)
+    end
+
+    subgraph 24V DC Styrekreds
+        B2 -- +24V DC --> F1(Controllino PLC)
+        B2 -- +24V DC --> F2(Nødstopknap\nNC-kontakt)
+        F1 -- Relæudgang --> KONT_SP[Kontaktor Spole\n24V DC]
+        F2 -- i serie --> KONT_SP
+        KONT_SP --- B2 -- 0V DC --> KONT_SP
+    end
+
+    subgraph Lavspændingsforbrugere og Sensorer
+        F1 -- PWM-udgange --> G1(Blæsere\n24V DC)
+        B2 -- 24V DC --> G1
+
+        F1 -- 5V DC + I2C Bus --> G2(Kabinet-sensorer\nTemp, PM, VOC, Dør)
+        G2 -- Feedback --> F1
+
+        F2 -- Status Input --> F1
+    end
+
+    style INPUT fill:#f9f,stroke:#333,stroke-width:2px
+    style A fill:#e0e0ff,stroke:#333,stroke-width:2px
+    style B1 fill:#e0ffe0,stroke:#333,stroke-width:2px
+    style B2 fill:#fff0e0,stroke:#333,stroke-width:2px
+    style F1 fill:#ffffcc,stroke:#333,stroke-width:2px
+    style F2 fill:#ffcccc,stroke:#333,stroke-width:2px
+    style KONT_SP fill:#eee,stroke:#333,stroke-width:1px
+    style KONT_SP text-align:left
