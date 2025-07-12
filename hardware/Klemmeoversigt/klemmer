@@ -1,49 +1,67 @@
 # Elektrisk Terminal Oversigt: Lavspændings Styrekredse
 
-Dette dokument giver et overblik over alle lavspændingsterminaler (klemmer) i 3DBuddy-tavlen, organiseret efter deres placering på DIN-skinnen. Oplysninger inkluderer tilsluttede komponenter, ledningsfarver og funktioner.
+Dette dokument giver et detaljeret overblik over alle lavspændingsterminaler (klemmer) i 3DBuddy-tavlen, organiseret efter deres placering på DIN-skinnen. Oplysninger inkluderer tilsluttede komponenter, ledningsfarver og funktioner. Dette er afgørende for byggeprocessen, fejlfinding og den tekniske dokumentation.
 
-**Farvekoder:**
+**Bemærk om Farvekoder:**
+De foreslåede farvekoder følger gængse industristandarder og dine egne præferencer. Konsekvent brug er vitalt.
+
 * **+24V DC:** Rød
 * **0V DC (GND for 24V):** Mørkeblå
 * **+5V DC:** Orange
 * **0V DC (GND for 5V/Signals):** Hvid
 * **I²C SDA:** Grøn
 * **I²C SCL:** Gul
-* **Digitale/Analoge Signaler:** Sort / Grå / Andre (specificeres)
+* **Digitale/Analoge Signaler:** Sort / Grå / Lilla / Pink (specificeres per signal)
 
 ---
 
 ## Klemrække X1: 24V DC Hovedforsyning & Distribution
 
-Denne klemrække er din primære fordeling for 24V DC strøm i tavlen.
+Denne klemrække er din primære fordeling for +24V DC strøm i tavlen. Husk at bruge lusinger (broer) mellem de interne klemmer for fordeling.
 
-| Klemme | Tilslutning (Ind)       | Ledningsfarve (Ind) | Tilslutning (Ud)                    | Ledningsfarve (Ud) | Funktion/Bemærkning                                                |
-| :----- | :---------------------- | :------------------ | :---------------------------------- | :----------------- | :----------------------------------------------------------------- |
-| X1:1   | PSU (+24V DC)           | Rød                 | Controllino PLC (VIN+)              | Rød                | Hovedforsyning +24V DC til PLC og andre 24V busser.                |
-| X1:2   | (Lusing fra X1:1)       | Rød                 | Kontaktor Styring (+24V start)      | Rød                | Forsyning til styrekredsen for kontaktor.                          |
-| X1:3   | (Lusing fra X1:1)       | Rød                 | Til Klemrække X3 (+24V)             | Rød                | Bus til sensor-klemrækker (X3, X4)                                 |
-| X1:4   | (Lusing fra X1:1)       | Rød                 | Til Klemrække X5 (+24V)             | Rød                | Bus til røgsensor-klemrækker (X5, X6)                              |
-| X1:5   | (Lusing fra X1:1)       | Rød                 | Til Klemrække X7 (+24V)             | Rød                | Bus til røgsensor-klemrækker (X7, X8)                              |
-| X1:6   | (Lusing fra X1:1)       | Rød                 | Til Klemrække X9 (+24V)             | Rød                | Bus til dørsensor-klemrækker (X9, X10)                             |
-| X1:7   | (Lusing fra X1:1)       | Rød                 | Til Klemrække X11 (+5V via Buck)    | Orange             | Bus til LED-klemrækker (X11, X12) - Husk 5V Buck herfra!           |
-| X1:8   | (Lusing fra X1:1)       | Rød                 | Til Klemrække XFAN1 (+24V)          | Rød                | Bus til blæser-klemrækker (XFAN1-XFAN4)                            |
+| Klemme | Tilslutning (Ind)        | Ledningsfarve (Ind) | Tilslutning (Ud)                        | Ledningsfarve (Ud) | Funktion/Bemærkning                                                |
+| :----- | :----------------------- | :------------------ | :-------------------------------------- | :----------------- | :----------------------------------------------------------------- |
+| X1:1   | **PSU (+24V DC)** | Rød                 | Controllino PLC (VIN+)                  | Rød                | Hovedforsyning +24V DC til PLC og andre 24V busser.                |
+| X1:2   | (Lusing fra X1:1)        | Rød                 | Til Klemrække XKONT:1 (+24V start)      | Rød                | Forsyning til styrekredsen for kontaktor.                          |
+| X1:3   | (Lusing fra X1:1)        | Rød                 | Til Klemrække X3:1 (+24V)               | Rød                | Bus til Sensor A klemrække.                                        |
+| X1:4   | (Lusing fra X1:1)        | Rød                 | Til Klemrække X4:1 (+24V)               | Rød                | Bus til Sensor B klemrække.                                        |
+| X1:5   | (Lusing fra X1:1)        | Rød                 | Til Klemrække X5:1 (+24V)               | Rød                | Bus til Røgsensor A (Digital) klemrække.                           |
+| X1:6   | (Lusing fra X1:1)        | Rød                 | Til Klemrække X6:1 (+24V)               | Rød                | Bus til Røgsensor B (Digital) klemrække.                           |
+| X1:7   | (Lusing fra X1:1)        | Rød                 | Til Klemrække X9:1 (+24V)               | Rød                | Bus til Dør A klemrække.                                           |
+| X1:8   | (Lusing fra X1:1)        | Rød                 | Til Klemrække X10:1 (+24V)              | Rød                | Bus til Dør B klemrække.                                           |
+| X1:9   | (Lusing fra X1:1)        | Rød                 | **Buck Converter Input (+24V)** | Rød                | Input til 24V til 5V buck converter (hvis ekstern).                |
+| X1:10  | (Lusing fra X1:9 via Buck) | Orange              | Til Klemrække X11:1 (+5V)               | Orange             | Bus til LED A klemrække.                                           |
+| X1:11  | (Lusing fra X1:10)       | Orange              | Til Klemrække X12:1 (+5V)               | Orange             | Bus til LED B klemrække.                                           |
+| X1:12  | (Lusing fra X1:1)        | Rød                 | Til Klemrække XFAN1:1 (+24V)            | Rød                | Bus til Blæser A1 klemrække.                                       |
+| X1:13  | (Lusing fra X1:12)       | Rød                 | Til Klemrække XFAN2:1 (+24V)            | Rød                | Bus til Blæser A2 klemrække.                                       |
+| X1:14  | (Lusing fra X1:13)       | Rød                 | Til Klemrække XFAN3:1 (+24V)            | Rød                | Bus til Blæser B1 klemrække.                                       |
+| X1:15  | (Lusing fra X1:14)       | Rød                 | Til Klemrække XFAN4:1 (+24V)            | Rød                | Bus til Blæser B2 klemrække.                                       |
 
 ---
 
 ## Klemrække X2: 0V DC (GND) Hovedbus
 
-Denne klemrække er din primære reference (jord/nul) for alle 24V DC og 5V DC kredsløb.
+Denne klemrække er din primære reference (jord/nul) for alle 24V DC og 5V DC kredsløb. Husk at bruge lusinger mellem de interne klemmer.
 
-| Klemme | Tilslutning (Ind)     | Ledningsfarve (Ind) | Tilslutning (Ud)               | Ledningsfarve (Ud) | Funktion/Bemærkning                                                |
-| :----- | :-------------------- | :------------------ | :----------------------------- | :----------------- | :----------------------------------------------------------------- |
-| X2:1   | PSU (0V DC / GND)     | Mørkeblå            | Controllino PLC (GND)          | Mørkeblå           | Hoved 0V DC til PLC og andre 0V busser.                            |
-| X2:2   | (Lusing fra X2:1)     | Mørkeblå            | Kontaktor Spole (A2)           | Mørkeblå           | 0V DC retur fra kontaktorspolen.                                   |
-| X2:3   | (Lusing fra X2:1)     | Mørkeblå            | Til Klemrække X3 (0V)          | Mørkeblå           | Bus til sensor-klemrækker (X3, X4)                                 |
-| X2:4   | (Lusing fra X2:1)     | Mørkeblå            | Til Klemrække X5 (0V)          | Mørkeblå           | Bus til røgsensor-klemrækker (X5, X6)                              |
-| X2:5   | (Lusing fra X2:1)     | Mørkeblå            | Til Klemrække X7 (0V)          | Mørkeblå           | Bus til røgsensor-klemrækker (X7, X8)                              |
-| X2:6   | (Lusing fra X2:1)     | Mørkeblå            | Til Klemrække X9 (0V)          | Mørkeblå           | Bus til dørsensor-klemrækker (X9, X10)                             |
-| X2:7   | (Lusing fra X2:1)     | Mørkeblå            | Til Klemrække X11 (0V for LED) | Hvid               | Bus til LED-klemrækker (X11, X12) - 0V for 5V kreds.               |
-| X2:8   | (Lusing fra X2:1)     | Mørkeblå            | Til Klemrække XFAN1 (0V)       | Mørkeblå           | Bus til blæser-klemrækker (XFAN1-XFAN4)                            |
+| Klemme | Tilslutning (Ind)        | Ledningsfarve (Ind) | Tilslutning (Ud)                 | Ledningsfarve (Ud) | Funktion/Bemærkning                                                |
+| :----- | :----------------------- | :------------------ | :------------------------------- | :----------------- | :----------------------------------------------------------------- |
+| X2:1   | **PSU (0V DC / GND)** | Mørkeblå            | Controllino PLC (GND)            | Mørkeblå           | Hoved 0V DC til PLC og andre 0V busser.                            |
+| X2:2   | (Lusing fra X2:1)        | Mørkeblå            | Kontaktor Spole (A2)             | Mørkeblå           | 0V DC retur fra kontaktorspolen.                                   |
+| X2:3   | (Lusing fra X2:1)        | Mørkeblå            | Til Klemrække X3:2 (0V)          | Mørkeblå           | Bus til Sensor A klemrække.                                        |
+| X2:4   | (Lusing fra X2:1)        | Mørkeblå            | Til Klemrække X4:2 (0V)          | Mørkeblå           | Bus til Sensor B klemrække.                                        |
+| X2:5   | (Lusing fra X2:1)        | Mørkeblå            | Til Klemrække X5:2 (0V)          | Mørkeblå           | Bus til Røgsensor A (Digital) klemrække.                           |
+| X2:6   | (Lusing fra X2:1)        | Mørkeblå            | Til Klemrække X6:2 (0V)          | Mørkeblå           | Bus til Røgsensor B (Digital) klemrække.                           |
+| X2:7   | (Lusing fra X2:1)        | Mørkeblå            | Til Klemrække X7:2 (0V)          | Mørkeblå           | Bus til Røgsensor A (Analog) klemrække.                            |
+| X2:8   | (Lusing fra X2:1)        | Mørkeblå            | Til Klemrække X8:2 (0V)          | Mørkeblå           | Bus til Røgsensor B (Analog) klemrække.                            |
+| X2:9   | (Lusing fra X2:1)        | Mørkeblå            | Til Klemrække X9:2 (0V)          | Mørkeblå           | Bus til Dør A klemrække.                                           |
+| X2:10  | (Lusing fra X2:1)        | Mørkeblå            | Til Klemrække X10:2 (0V)         | Mørkeblå           | Bus til Dør B klemrække.                                           |
+| X2:11  | (Lusing fra X2:1)        | Mørkeblå            | **Buck Converter Output (0V)** | Hvid               | 0V DC retur fra 5V buck converter.                                 |
+| X2:12  | (Lusing fra X2:11)       | Hvid                | Til Klemrække X11:3 (0V for LED) | Hvid               | Bus til LED A klemrække (5V GND).                                  |
+| X2:13  | (Lusing fra X2:12)       | Hvid                | Til Klemrække X12:3 (0V for LED) | Hvid               | Bus til LED B klemrække (5V GND).                                  |
+| X2:14  | (Lusing fra X2:1)        | Mørkeblå            | Til Klemrække XFAN1:4 (0V)      | Mørkeblå           | Bus til Blæser A1 klemrække.                                       |
+| X2:15  | (Lusing fra X2:14)       | Mørkeblå            | Til Klemrække XFAN2:4 (0V)      | Mørkeblå           | Bus til Blæser A2 klemrække.                                       |
+| X2:16  | (Lusing fra X2:15)       | Mørkeblå            | Til Klemrække XFAN3:4 (0V)      | Mørkeblå           | Bus til Blæser B1 klemrække.                                       |
+| X2:17  | (Lusing fra X2:16)       | Mørkeblå            | Til Klemrække XFAN4:4 (0V)      | Mørkeblå           | Bus til Blæser B2 klemrække.                                       |
 
 ---
 
@@ -51,11 +69,11 @@ Denne klemrække er din primære reference (jord/nul) for alle 24V DC og 5V DC k
 
 Dedikeret klemrække for styringen af hovedkontaktoren.
 
-| Klemme    | Tilslutning (Ind)                | Ledningsfarve (Ind) | Tilslutning (Ud)                       | Ledningsfarve (Ud) | Funktion/Bemærkning                                            |
-| :-------- | :------------------------------- | :------------------ | :------------------------------------- | :----------------- | :------------------------------------------------------------- |
-| XKONT:1   | Fra X1:2 (+24V DC)               | Rød                 | Til Controllino PLC (Relæudgang Input) | Rød                | +24V DC ind til Controllino's relæudgang (gennem kontakt).     |
-| XKONT:2   | Fra Controllino PLC (Relæudgang) | Rød                 | Til Nødstopknap (NC-kontakt)           | Rød                | Udgang fra Controllino's relæ til nødstop (i serie).           |
-| XKONT:3   | Fra Nødstopknap (NC-kontakt)     | Rød                 | Til Kontaktor Spole (A1)               | Rød                | Udgang fra nødstop til kontaktorspolen.                        |
+| Klemme   | Tilslutning (Ind)                  | Ledningsfarve (Ind) | Tilslutning (Ud)                               | Ledningsfarve (Ud) | Funktion/Bemærkning                                            |
+| :------- | :--------------------------------- | :------------------ | :--------------------------------------------- | :----------------- | :------------------------------------------------------------- |
+| XKONT:1  | Fra X1:2 (+24V DC)                 | Rød                 | Til Controllino PLC (Relæudgang, Inputside)    | Rød                | +24V DC forsyning ind til Controllino's relæ.                  |
+| XKONT:2  | Fra Controllino PLC (Relæudgang)   | Rød                 | Til Nødstopknap (NC-kontakt, Indgang)          | Rød                | Udgang fra Controllino's relæ.                                 |
+| XKONT:3  | Fra Nødstopknap (NC-kontakt, Udgang) | Rød                 | Til Kontaktor Spole (A1)                       | Rød                | Spænding til kontaktorspolen (aktiverer den).                  |
 
 ---
 
@@ -63,21 +81,178 @@ Dedikeret klemrække for styringen af hovedkontaktoren.
 
 Dedikeret klemrække for signalering af nødstopstatus til PLC'en.
 
-| Klemme    | Tilslutning (Ind)                | Ledningsfarve (Ind) | Tilslutning (Ud)                   | Ledningsfarve (Ud) | Funktion/Bemærkning                                                |
-| :-------- | :------------------------------- | :------------------ | :--------------------------------- | :----------------- | :----------------------------------------------------------------- |
-| XNSTOP:1  | Fra Nødstopknap (Status-kontakt) | Mørkeblå            | Til Controllino PLC (Digital Input) | Mørkeblå           | Nødstop status til PLC (evt. med 24V pull-up hvis PLC-input kræver). |
+| Klemme   | Tilslutning (Ind)                    | Ledningsfarve (Ind) | Tilslutning (Ud)                       | Ledningsfarve (Ud) | Funktion/Bemærkning                                                |
+| :------- | :----------------------------------- | :------------------ | :------------------------------------- | :----------------- | :----------------------------------------------------------------- |
+| XNSTOP:1 | Fra Nødstopknap (Status-kontakt) | Mørkeblå            | Til Controllino PLC (Digital Input, f.eks. DIx) | Mørkeblå           | Signal til PLC om nødstopstatus. Husk evt. pull-up mod +24V eller intern på PLC. |
 
 ---
 
-**(Fortsæt med X3, X4, X5, X6, X7, X8, X9, X10, X11, X12, XFAN1, XFAN2, XFAN3, XFAN4 på samme måde)**
+## Klemrække X3: Sensor A (Kammer A)
+
+Tilslutning af primær sensor-PCB i kammer A (f.eks. SHT31-D Temp/RH, SGP40 VOC).
+
+| Klemme | Tilslutning (Ind)         | Ledningsfarve (Ind) | Tilslutning (Ud)             | Ledningsfarve (Ud) | Funktion/Bemærkning                |
+| :----- | :------------------------ | :------------------ | :--------------------------- | :----------------- | :--------------------------------- |
+| X3:1   | Fra X1:3 (+24V DC)        | Rød                 | Sensor-PCB A (+24V)          | Rød                | Forsyning til Sensor-PCB A.        |
+| X3:2   | Fra X2:3 (0V DC)          | Mørkeblå            | Sensor-PCB A (0V)            | Mørkeblå           | 0V DC for Sensor-PCB A.            |
+| X3:3   | Controllino PLC (SDA)     | Grøn                | Sensor-PCB A (SDA via I²C Mux) | Grøn               | I²C Data.                          |
+| X3:4   | Controllino PLC (SCL)     | Gul                 | Sensor-PCB A (SCL via I²C Mux) | Gul                | I²C Clock.                         |
+| X3:5   | Sensor-PCB A (INT)        | Hvid                | Controllino PLC (DIx)        | Hvid               | Interrupt signal fra sensor-PCB.   |
 
 ---
 
-### Hvordan du bruger dette:
+## Klemrække X4: Sensor B (Kammer B)
 
-* **Google Sheets:** Du kan kopiere teksten for hver tabel og indsætte den i Google Sheets. Sheets er intelligent nok til at genkende tabeller og formatere det korrekt i rækker og kolonner. Dette er den nemmeste og mest effektive måde at have det i dit Google Drive.
-* **GitHub:** Kopier Markdown-teksten direkte ind i en `.md` fil i dit GitHub-repository. GitHub vil automatisk rendere den som en flot, formateret tabel.
+Tilslutning af primær sensor-PCB i kammer B (f.eks. SHT31-D Temp/RH, SGP40 VOC).
 
-Dette format er både læsbart i sin rå tekstform og kan nemt konverteres til de visuelle tabelformater, du ønsker at bruge i dine dokumentationssystemer. Det giver dig den detaljerede kontrol, du har brug for til din bygning og CE-mærkning.
+| Klemme | Tilslutning (Ind)         | Ledningsfarve (Ind) | Tilslutning (Ud)             | Ledningsfarve (Ud) | Funktion/Bemærkning                |
+| :----- | :------------------------ | :------------------ | :--------------------------- | :----------------- | :--------------------------------- |
+| X4:1   | Fra X1:4 (+24V DC)        | Rød                 | Sensor-PCB B (+24V)          | Rød                | Forsyning til Sensor-PCB B.        |
+| X4:2   | Fra X2:4 (0V DC)          | Mørkeblå            | Sensor-PCB B (0V)            | Mørkeblå           | 0V DC for Sensor-PCB B.            |
+| X4:3   | Controllino PLC (SDA)     | Grøn                | Sensor-PCB B (SDA via I²C Mux) | Grøn               | I²C Data. (Kan deles med X3 via Mux) |
+| X4:4   | Controllino PLC (SCL)     | Gul                 | Sensor-PCB B (SCL via I²C Mux) | Gul                | I²C Clock. (Kan deles med X3 via Mux) |
+| X4:5   | Sensor-PCB B (INT)        | Hvid                | Controllino PLC (DIx)        | Hvid               | Interrupt signal fra sensor-PCB.   |
 
-Vil du have mig til at fortsætte med de næste klemrækker i Markdown-format, eller har du nu nok til selv at fortsætte?
+---
+
+## Klemrække X5: Røgsensor A (Digital) (Kammer A)
+
+Tilslutning af digital røgsensor i kammer A.
+
+| Klemme | Tilslutning (Ind)          | Ledningsfarve (Ind) | Tilslutning (Ud)             | Ledningsfarve (Ud) | Funktion/Bemærkning                 |
+| :----- | :------------------------- | :------------------ | :--------------------------- | :----------------- | :---------------------------------- |
+| X5:1   | Fra X1:5 (+24V DC)         | Rød                 | Røgsensor A (VCC)            | Rød                | Forsyning til røgsensor A.          |
+| X5:2   | Fra X2:5 (0V DC)           | Mørkeblå            | Røgsensor A (GND)            | Mørkeblå           | 0V DC for røgsensor A.              |
+| X5:3   | Røgsensor A (D0)           | Sort                | Controllino PLC (DI2)        | Sort               | Digital output fra røgsensor A.     |
+
+---
+
+## Klemrække X6: Røgsensor B (Digital) (Kammer B)
+
+Tilslutning af digital røgsensor i kammer B.
+
+| Klemme | Tilslutning (Ind)          | Ledningsfarve (Ind) | Tilslutning (Ud)             | Ledningsfarve (Ud) | Funktion/Bemærkning                 |
+| :----- | :------------------------- | :------------------ | :--------------------------- | :----------------- | :---------------------------------- |
+| X6:1   | Fra X1:6 (+24V DC)         | Rød                 | Røgsensor B (VCC)            | Rød                | Forsyning til røgsensor B.          |
+| X6:2   | Fra X2:6 (0V DC)           | Mørkeblå            | Røgsensor B (GND)            | Mørkeblå           | 0V DC for røgsensor B.              |
+| X6:3   | Røgsensor B (D0)           | Sort                | Controllino PLC (DI3)        | Sort               | Digital output fra røgsensor B.     |
+
+---
+
+## Klemrække X7: Røgsensor A (Analog) (Kammer A)
+
+Tilslutning af analog røgsensor i kammer A.
+
+| Klemme | Tilslutning (Ind)          | Ledningsfarve (Ind) | Tilslutning (Ud)             | Ledningsfarve (Ud) | Funktion/Bemærkning                  |
+| :----- | :------------------------- | :------------------ | :--------------------------- | :----------------- | :----------------------------------- |
+| X7:1   | Røgsensor A (A0)           | Grå                 | Controllino PLC (AIN0)       | Grå                | Analog output fra røgsensor A.       |
+| X7:2   | Fra X2:7 (0V DC)           | Mørkeblå            | Røgsensor A (GND)            | Mørkeblå           | 0V DC for røgsensor A (analog reference). |
+
+---
+
+## Klemrække X8: Røgsensor B (Analog) (Kammer B)
+
+Tilslutning af analog røgsensor i kammer B.
+
+| Klemme | Tilslutning (Ind)          | Ledningsfarve (Ind) | Tilslutning (Ud)             | Ledningsfarve (Ud) | Funktion/Bemærkning                  |
+| :----- | :------------------------- | :------------------ | :--------------------------- | :----------------- | :----------------------------------- |
+| X8:1   | Røgsensor B (A0)           | Grå                 | Controllino PLC (AIN1)       | Grå                | Analog output fra røgsensor B.       |
+| X8:2   | Fra X2:8 (0V DC)           | Mørkeblå            | Røgsensor B (GND)            | Mørkeblå           | 0V DC for røgsensor B (analog reference). |
+
+---
+
+## Klemrække X9: Dør A (Kammer A)
+
+Tilslutning af Reed switch (dørsensor) i kammer A.
+
+| Klemme | Tilslutning (Ind)          | Ledningsfarve (Ind) | Tilslutning (Ud)             | Ledningsfarve (Ud) | Funktion/Bemærkning                  |
+| :----- | :------------------------- | :------------------ | :--------------------------- | :----------------- | :----------------------------------- |
+| X9:1   | Fra X1:7 (+24V DC)         | Rød                 | Reed A (+24V)                | Rød                | Forsyning/pull-up for Reed Switch A. |
+| X9:2   | Reed A (NC)                | Sort                | Controllino PLC (DI4)        | Sort               | Normally Closed signal fra Reed A.   |
+
+---
+
+## Klemrække X10: Dør B (Kammer B)
+
+Tilslutning af Reed switch (dørsensor) i kammer B.
+
+| Klemme | Tilslutning (Ind)          | Ledningsfarve (Ind) | Tilslutning (Ud)             | Ledningsfarve (Ud) | Funktion/Bemærkning                  |
+| :----- | :------------------------- | :------------------ | :--------------------------- | :----------------- | :----------------------------------- |
+| X10:1  | Fra X1:8 (+24V DC)         | Rød                 | Reed B (+24V)                | Rød                | Forsyning/pull-up for Reed Switch B. |
+| X10:2  | Reed B (NC)                | Sort                | Controllino PLC (DI5)        | Sort               | Normally Closed signal fra Reed B.   |
+
+---
+
+## Klemrække X11: LED A (Kammer A)
+
+Tilslutning af adresserbar LED-strip (f.eks. WS2812B) i kammer A.
+
+| Klemme | Tilslutning (Ind)                   | Ledningsfarve (Ind) | Tilslutning (Ud)             | Ledningsfarve (Ud) | Funktion/Bemærkning                  |
+| :----- | :---------------------------------- | :------------------ | :--------------------------- | :----------------- | :----------------------------------- |
+| X11:1  | Fra X1:10 (+5V DC via Buck Converter) | Orange              | LED A (+5V)                  | Orange             | Strømforsyning til LED-strip A.      |
+| X11:2  | Controllino PLC (Q0.4 / Digital Out) | Sort                | LED A (DIN)                  | Sort               | Data input til LED-strip A.          |
+| X11:3  | Fra X2:12 (0V DC for 5V)            | Hvid                | LED A (0V)                   | Hvid               | 0V DC reference for LED-strip A.     |
+
+---
+
+## Klemrække X12: LED B (Kammer B)
+
+Tilslutning af adresserbar LED-strip i kammer B.
+
+| Klemme | Tilslutning (Ind)                   | Ledningsfarve (Ind) | Tilslutning (Ud)             | Ledningsfarve (Ud) | Funktion/Bemærkning                  |
+| :----- | :---------------------------------- | :------------------ | :--------------------------- | :----------------- | :----------------------------------- |
+| X12:1  | Fra X1:11 (+5V DC via Buck Converter) | Orange              | LED B (+5V)                  | Orange             | Strømforsyning til LED-strip B.      |
+| X12:2  | Controllino PLC (Q0.5 / Digital Out) | Sort                | LED B (DIN)                  | Sort               | Data input til LED-strip B.          |
+| X12:3  | Fra X2:13 (0V DC for 5V)            | Hvid                | LED B (0V)                   | Hvid               | 0V DC reference for LED-strip B.     |
+
+---
+
+## Klemrække XFAN1: Blæser A1 (Kammer A)
+
+Tilslutning af PWM-styret blæser i kammer A.
+
+| Klemme    | Tilslutning (Ind)          | Ledningsfarve (Ind) | Tilslutning (Ud)             | Ledningsfarve (Ud) | Funktion/Bemærkning                 |
+| :-------- | :------------------------- | :------------------ | :--------------------------- | :----------------- | :---------------------------------- |
+| XFAN1:1   | Fra X1:12 (+24V DC)        | Rød                 | Blæser A1 (+24V)             | Rød                | Strømforsyning til blæser A1.       |
+| XFAN1:2   | MOSFET-driver (PWM Q0.0)   | Grå                 | Blæser A1 (PWM)              | Grå                | PWM-styresignal til blæser A1.      |
+| XFAN1:3   | Blæser A1 (Tacho)          | Gul                 | Controllino PLC (Digital Input) | Gul                | Tacho-signal fra blæser A1 til PLC. |
+| XFAN1:4   | Fra X2:14 (0V DC)          | Mørkeblå            | Blæser A1 (0V)               | Mørkeblå           | 0V DC for blæser A1.                |
+
+---
+
+## Klemrække XFAN2: Blæser A2 (Kammer A)
+
+Tilslutning af PWM-styret blæser i kammer A.
+
+| Klemme    | Tilslutning (Ind)          | Ledningsfarve (Ind) | Tilslutning (Ud)             | Ledningsfarve (Ud) | Funktion/Bemærkning                 |
+| :-------- | :------------------------- | :------------------ | :--------------------------- | :----------------- | :---------------------------------- |
+| XFAN2:1   | Fra X1:13 (+24V DC)        | Rød                 | Blæser A2 (+24V)             | Rød                | Strømforsyning til blæser A2.       |
+| XFAN2:2   | MOSFET-driver (PWM Q0.1)   | Grå                 | Blæser A2 (PWM)              | Grå                | PWM-styresignal til blæser A2.      |
+| XFAN2:3   | Blæser A2 (Tacho)          | Gul                 | Controllino PLC (Digital Input) | Gul                | Tacho-signal fra blæser A2 til PLC. |
+| XFAN2:4   | Fra X2:15 (0V DC)          | Mørkeblå            | Blæser A2 (0V)               | Mørkeblå           | 0V DC for blæser A2.                |
+
+---
+
+## Klemrække XFAN3: Blæser B1 (Kammer B)
+
+Tilslutning af PWM-styret blæser i kammer B.
+
+| Klemme    | Tilslutning (Ind)          | Ledningsfarve (Ind) | Tilslutning (Ud)             | Ledningsfarve (Ud) | Funktion/Bemærkning                 |
+| :-------- | :------------------------- | :------------------ | :--------------------------- | :----------------- | :---------------------------------- |
+| XFAN3:1   | Fra X1:14 (+24V DC)        | Rød                 | Blæser B1 (+24V)             | Rød                | Strømforsyning til blæser B1.       |
+| XFAN3:2   | MOSFET-driver (PWM Q0.2)   | Grå                 | Blæser B1 (PWM)              | Grå                | PWM-styresignal til blæser B1.      |
+| XFAN3:3   | Blæser B1 (Tacho)          | Gul                 | Controllino PLC (Digital Input) | Gul                | Tacho-signal fra blæser B1 til PLC. |
+| XFAN3:4   | Fra X2:16 (0V DC)          | Mørkeblå            | Blæser B1 (0V)               | Mørkeblå           | 0V DC for blæser B1.                |
+
+---
+
+## Klemrække XFAN4: Blæser B2 (Kammer B)
+
+Tilslutning af PWM-styret blæser i kammer B.
+
+| Klemme    | Tilslutning (Ind)          | Ledningsfarve (Ind) | Tilslutning (Ud)             | Ledningsfarve (Ud) | Funktion/Bemærkning                 |
+| :-------- | :------------------------- | :------------------ | :--------------------------- | :----------------- | :---------------------------------- |
+| XFAN4:1   | Fra X1:15 (+24V DC)        | Rød                 | Blæser B2 (+24V)             | Rød                | Strømforsyning til blæser B2.       |
+| XFAN4:2   | MOSFET-driver (PWM Q0.3)   | Grå                 | Blæser B2 (PWM)              | Grå                | PWM-styresignal til blæser B2.      |
+| XFAN4:3   | Blæser B2 (Tacho)          | Gul                 | Controllino PLC (Digital Input) | Gul                | Tacho-signal fra blæser B2 til PLC. |
+| XFAN4:4   | Fra X2:17 (0V DC)          | Mørkeblå            | Blæser B2 (0V)               | Mørkeblå           | 0V DC for blæser B2.                |
