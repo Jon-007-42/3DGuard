@@ -1,0 +1,30 @@
+flowchart TB
+    %% 230 V Indgang og Hovedbeskyttelse
+    A["230 V Forsyning (fra væg)"] --> B["RCBO 1P+N C13A 30mA\n(Hovedafbryder & -beskyttelse)"]
+
+    %% Gren til 24 VDC Forsyning (altid tændt, hvis RCBO er tændt)
+    B --> PSU["24 V DC DIN-PSU"]
+
+    %% Kontaktor Styrekreds (24V DC)
+    PSU -- "+24V DC" --> Controllino_Relay["Controllino PLC\n(Relæudgang)"]
+    Controllino_Relay --> Noodstop_NC["Nødstopknap (NC-kontakt)"]
+    Noodstop_NC --> Kontaktor_Spole["Kontaktor Spole (24V DC)"]
+    Kontaktor_Spole --> PSU_GND["PSU GND (0V DC)"]
+
+    %% Hovedkontakter Kontaktor (230V AC)
+    B -- "L & N" --> Kontaktor_Power["Kontaktor\n(Hovedkontakter)"]
+
+    %% 230 V Grene (beskyttet af Kontaktor og individuelle MCB'er)
+    Kontaktor_Power --> P1_MCB["MCB P1 1P+N C10A"] --> KWH1["kWh-måler P1"] --> P1S["Stikkontakt P1 (Printer 1)"]
+    Kontaktor_Power --> P2_MCB["MCB P2 1P+N C10A"] --> KWH2["kWh-måler P2"] --> P2S["Stikkontakt P2 (Printer 2)"]
+    Kontaktor_Power --> AUX_MCB["MCB AUX 1P+N C10A"] --> AUXS["Stikkontakt AUX\n(Top af møbel)"]
+
+    %% Lavspændingsforbrugere (altid forsynet fra PSU, styret af PLC)
+    PSU --> PLC["Controllino PLC"]
+    PLC -- "PWM" --> FANS["Blæsere (24V)\n+ HEPA-filter"]
+    PLC -- "5V & I2C Bus" --> SENSORS["Sensorer\n(Temp/RH, VOC, Røg, Dør)"]
+    
+    %% PLC Logik og Nødstopfeedback
+    Noodstop_NC -- "Status signal" --> PLC
+    SENSORS -- "Data" --> PLC
+    PLC -- "Trip ved fare\n(f.eks. Temp/VOC)" --> Controllino_Relay
