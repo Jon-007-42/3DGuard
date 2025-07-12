@@ -27,7 +27,7 @@ Denne klemrække er din primære fordeling for +24V DC strøm i tavlen. Husk at 
 
 | Klemme | Tilslutning (Ind)        | Ledningsfarve (Ind) | Tilslutning (Ud)                     | Ledningsfarve (Ud) | Funktion/Bemærkning                                                |
 | :----- | :----------------------- | :------------------ | :----------------------------------- | :----------------- | :----------------------------------------------------------------- |
-| X1:1   | **PSU (+24V DC)** | Rød                 | Controllino PLC (VIN+)               | Rød                | Hovedforsyning +24V DC til PLC og andre 24V busser.                |
+| X1:1   | **PSU (+24V DC)**        | Rød                 | Controllino PLC (VIN+)               | Rød                | Hovedforsyning +24V DC til PLC og andre 24V busser.                |
 | X1:2   | (Lusing fra X1:1)        | Rød                 | Til Klemrække XKONT:1 (+24V start)   | Rød                | Forsyning til styrekredsen for kontaktor.                          |
 | X1:3   | (Lusing fra X1:1)        | Rød                 | Til Klemrække X9:1 (+24V)            | Rød                | Bus til Dør A klemrække (til Reed Switch).                         |
 | X1:4   | (Lusing fra X1:3)        | Rød                 | Til Klemrække X10:1 (+24V)           | Rød                | Bus til Dør B klemrække (til Reed Switch).                         |
@@ -48,7 +48,7 @@ Denne klemrække er din primære reference (jord/nul) for alle 24V DC og 5V DC k
 
 | Klemme | Tilslutning (Ind)        | Ledningsfarve (Ind) | Tilslutning (Ud)               | Ledningsfarve (Ud) | Funktion/Bemærkning                                                |
 | :----- | :----------------------- | :------------------ | :----------------------------- | :----------------- | :----------------------------------------------------------------- |
-| X2:1   | **PSU (0V DC / GND)** | Mørkeblå            | Controllino PLC (GND)          | Mørkeblå           | Hoved 0V DC til PLC og andre 0V busser.                            |
+| X2:1   | **PSU (0V DC / GND)**    | Mørkeblå            | Controllino PLC (GND)          | Mørkeblå           | Hoved 0V DC til PLC og andre 0V busser.                            |
 | X2:2   | (Lusing fra X2:1)        | Mørkeblå            | Kontaktor Spole (A2)           | Mørkeblå           | 0V DC retur fra kontaktorspolen.                                   |
 | X2:3   | (Lusing fra X2:1)        | Mørkeblå            | Til Klemrække X3:2 (0V)          | Mørkeblå           | Bus til Sensor A klemrække.                                        |
 | X2:4   | (Lusing fra X2:3)        | Mørkeblå            | Til Klemrække X4:2 (0V)          | Mørkeblå           | Bus til Sensor B klemrække.                                        |
